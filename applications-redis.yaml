@@ -1,41 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metabase
-  # You'll usually want to add your resources to the argocd namespace.
-  namespace: argocd
-  # Add a this finalizer ONLY if you want these to cascade delete.
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  name: redis
 spec:
-  # The project the application belongs to.
-  project: default
-
-  # Source of the application manifests
-  source:
-    repoURL: https://gitlab.sct-vtvcab.com/vtvcab-cnpm/devops/k8s-manifest.git
-    targetRevision: master
-    path: argocd-template/prod/metabase
-
-    # helm specific config
-    helm:
-      # Extra parameters to set (same as setting through values.yaml, but these take precedence)
-      parameters: []
-      # - name: "image.tag"
-      #   value: master
-
-      # Release name override (defaults to application name)
-      releaseName: metabase
-
-      valueFiles:
-      - values-v1.0.yaml
-
-  # Destination cluster and namespace to deploy the application
   destination:
-    server: https://kubernetes.default.svc
-    namespace: vtvcab-prod
-
-  # Sync policy
+    name: ''
+    namespace: default
+    server: 'https://rancher-test.vtvlive.vn/k8s/clusters/c-klj2x'
+  source:
+    path: redis
+    repoURL: 'https://github.com/hung2602/test-argo.git'
+    targetRevision: master
+    helm:
+      valueFiles:
+        - values.yaml
+  sources: []
+  project: default
   syncPolicy:
-    automated:
-      prune: true
+    automated: null
