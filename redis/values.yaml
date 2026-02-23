@@ -3,7 +3,7 @@ auth:
   enabled: true
   existingSecret: ""
   existingSecretPasswordKey: ""
-  password: vlive20261
+  password: vlive2026
   sentinel: true
   usePasswordFileFromSecret: true
   usePasswordFiles: false
