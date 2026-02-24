@@ -185,7 +185,13 @@ master:
     periodSeconds: 5
     successThreshold: 1
     timeoutSeconds: 1
-  resources: {}
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
   resourcesPreset: nano
   revisionHistoryLimit: 10
   schedulerName: ""
