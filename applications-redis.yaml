@@ -2,19 +2,23 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: redis
+  namespace: default
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: services
     server: 'https://rancher-test.vtvlive.vn/k8s/clusters/c-klj2x'
   source:
     path: redis
     repoURL: 'https://github.com/hung2602/test-argo.git'
     targetRevision: master
     helm:
+      releaseName: redis-development
       valueFiles:
         - values.yaml
   sources: []
-  project: default
+  project: cluster-hieunn
   syncPolicy:
-    automated: null
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
